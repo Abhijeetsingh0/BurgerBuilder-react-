@@ -1,6 +1,6 @@
 import React from 'react'
 import Auxl  from '../../hoc/Auxl';
-import classes from "./Layout.css"; 
+import "./Layout.css"; 
 
 const Layout = (props) => {
     return (
