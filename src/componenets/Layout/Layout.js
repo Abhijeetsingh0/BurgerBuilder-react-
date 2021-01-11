@@ -1,15 +1,15 @@
 import React from 'react'
 import Auxl  from '../../hoc/Auxl';
 import "./Layout.css"; 
+import Toolbar from "../Navigation/Toolbar/Toolbar";
+import SideDraws from "../Navigation/SideDraws/SideDraws";
 
 const Layout = (props) => {
     return (
         <Auxl>
-            <div>
-            layout sidebar nav bar
-        </div>
-        <main className="content">
-            somthing is here
+            <Toolbar />
+            <SideDraws />
+            <main className="content">
             {props.children}
         </main>
         </Auxl>
