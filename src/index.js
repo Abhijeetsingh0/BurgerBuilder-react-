@@ -6,9 +6,11 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import reducer from './store/reducer';
+import burgerBuilderReducer from './store/reducer/burgerBuilder';
 
-const store = createStore(reducer)
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(burgerBuilderReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const app = (
   <Provider store={store}>
