@@ -1,33 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
 import './index.css';
-import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import burgerBuilderReducer from './store/reducer/burgerBuilder';
+import registerServiceWorker from './registerServiceWorker';
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
 
-//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(burgerBuilderReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(burgerBuilderReducer, composeEnhancers(
+    applyMiddleware(thunk)
+));
 
 const app = (
-  <Provider store={store}>
-  <BrowserRouter>
-    <App/>
-  </BrowserRouter>
-  </Provider>
-)
-
-ReactDOM.render(
-  <React.StrictMode>
-    {app}
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render( app, document.getElementById( 'root' ) );
+registerServiceWorker();

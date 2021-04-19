@@ -1,13 +1,13 @@
-import React, { Component } from "react"; 
-import Order from '../../componenets/Order/Order';
-import axios from '../../axios-order';
+import React, { Component } from 'react';
+
+import Order from '../../components/Order/Order';
+import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 class Orders extends Component {
-
-    state={
-        orders:[],
-        loading:true
+    state = {
+        orders: [],
+        loading: true
     }
 
     componentDidMount() {
@@ -27,19 +27,18 @@ class Orders extends Component {
             });
     }
 
-  render() {
-    return (
-     <div>
-      {this.state.orders.map(order => (
+    render () {
+        return (
+            <div>
+                {this.state.orders.map(order => (
                     <Order 
                         key={order.id}
                         ingredients={order.ingredients}
-                        price={order.price} 
-                        />
+                        price={order.price} />
                 ))}
-     </div>
-    );
-  }
+            </div>
+        );
+    }
 }
 
-export default  withErrorHandler(Orders,axios);
+export default withErrorHandler(Orders, axios);
